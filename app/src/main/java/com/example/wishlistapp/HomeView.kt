@@ -67,11 +67,12 @@ fun HomeView(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)){
-            items(wishlist.value, key = {it.id}) { wish ->
+                .padding(it)
+        ) {
+            items(wishlist.value, key = { it.id }) { wish ->
                 val dismissState = rememberDismissState(
                     confirmStateChange = {
-                        if (it == DismissValue.DismissedToEnd || it == DismissValue.DismissedToStart){
+                        if (it == DismissValue.DismissedToEnd || it == DismissValue.DismissedToStart) {
                             viewModel.deleteWish(wish)
                         }
                         true
@@ -86,16 +87,21 @@ fun HomeView(
                         )
                         val alignment = Alignment.CenterEnd
                         Box(
-                            Modifier.fillMaxSize().background(color).padding(horizontal = 20.dp),
+                            Modifier
+                                .fillMaxSize()
+                                .background(color)
+                                .padding(horizontal = 20.dp),
                             contentAlignment = alignment
-                        ){
-                            Icon(Icons.Default.Delete,
+                        ) {
+                            Icon(
+                                Icons.Default.Delete,
                                 contentDescription = "Delete Icon",
-                                tint = Color.White)
+                                tint = Color.White
+                            )
                         }
                     },
                     directions = setOf(DismissDirection.EndToStart),
-                    dismissThresholds = {FractionalThreshold(1f)},
+                    dismissThresholds = { FractionalThreshold(1f) },
                     dismissContent = {
                         WishItem(wish = wish) {
                             val id = wish.id

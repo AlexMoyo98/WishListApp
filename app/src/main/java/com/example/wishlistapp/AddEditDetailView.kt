@@ -45,8 +45,8 @@ fun AddEditDetailView(
     }
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
-    if (id != 0L){
-        val wish = viewModel.getAWishById(id).collectAsState(initial = Wish(0L,"",""))
+    if (id != 0L) {
+        val wish = viewModel.getAWishById(id).collectAsState(initial = Wish(0L, "", ""))
         viewModel.wishTitleState = wish.value.title
         viewModel.wishDescriptionState = wish.value.description
     } else {
@@ -98,7 +98,8 @@ fun AddEditDetailView(
                             Wish(
                                 id = id,
                                 title = viewModel.wishTitleState.trim(),
-                                description = viewModel.wishDescriptionState.trim())
+                                description = viewModel.wishDescriptionState.trim()
+                            )
                         )
                         snackMessage.value = "Fields have been updated "
                     } else {
@@ -106,7 +107,8 @@ fun AddEditDetailView(
                         viewModel.addWish(
                             Wish(
                                 title = viewModel.wishTitleState.trim(),
-                                description = viewModel.wishDescriptionState.trim())
+                                description = viewModel.wishDescriptionState.trim()
+                            )
                         )
                         snackMessage.value = "Wish has been created"
                     }
